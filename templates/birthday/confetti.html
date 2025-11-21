@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎈 Celebration Time!</title>
+  <link rel="stylesheet" href="{% static 'css/confetti.css' %}">
+</head>
+<body>
+  <div class="celebration-container">
+    <h1 class="title">🎊 Happy Birthday! 🎉</h1>
+    <p class="subtitle">Wishing you joy, laughter, and love 💖</p>
+    <!-- Background music (looped) -->
+    <audio id="bg-music" src="{% static 'music/bg-music.mp3' %}" preload="auto" loop></audio>
+    <button id="party-btn">✨ Start Party ✨</button>
+    <audio id="party-music" src="{% static 'music/click.mp3' %}" preload="auto"></audio>
+  </div>
+
+  <script src="{% static 'js/confetti.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ffb6c1, #ffd1dc);
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 30px;
+}
+
+h1 {
+  color: #ff4081;
+  font-size: 2.5rem;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 90px);
+  grid-gap: 15px;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.box {
+  width: 90px;
+  height: 90px;
+  background-color: #ffe4ec;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s;
+  background-size: cover;
+  background-position: center;
+}
+
+.box:hover {
+  transform: scale(1.1);
+}
+
+.found {
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+  animation: sparkle 0.6s ease;
+}
+
+#result-message {
+  font-size: 1.5rem;
+  color: #ff006e;
+  margin-top: 20px;
+}
+
+#play-again,
+#msg {
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: none;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+#play-again:hover,
+#msg:hover {
+  background-color: #d63384;
+  transform: scale(1.1);
+}
+
+/* ✨ Cute pop animation when clicking */
+.pop-animate {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+
+/* ✨ Sparkle effect when cake found */
+@keyframes sparkle {
+  0% { box-shadow: 0 0 10px #fff; transform: scale(1.1); }
+  50% { box-shadow: 0 0 25px #ff80bf; transform: scale(1.2); }
+  100% { box-shadow: 0 0 10px #fff; transform: scale(1); }
+}
+
+audio#bg-music {
+  transition: volume 3s ease;
+}

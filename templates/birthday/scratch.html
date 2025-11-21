@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎁 Birthday Scratch Surprises 🎁</title>
+  <link rel="stylesheet" href="{% static 'css/scratch.css' %}">
+</head>
+
+<body>
+<div class="main-container">
+
+  <h1 class="title">✨ Scratch Me ✨</h1>
+
+  <div class="card-wrapper">
+    <div class="card">
+
+      <!-- Hidden Image + Message -->
+      <div class="hidden-content" id="hiddenContent">
+        <img id="hiddenImage" class="reveal-img" src="{% static 'images/card1.jpeg' %}" alt="Surprise">
+        <p id="hiddenMessage" class="reveal-msg">“Cutie Pig 🐷😆”</p>
+      </div>
+
+      <!-- Scratch Canvas -->
+      <canvas id="scratchCanvas"></canvas>
+    </div>
+  </div>
+
+  <button id="nextCardBtn" class="next-btn">Next Card 💌</button>
+  <button id="finalBtn" class="next-btn final">Next Surprise 🎈</button>
+
+</div>
+
+<!-- Background Music -->
+<audio id="bg-music" src="{% static 'music/cute.mp3' %}" autoplay loop></audio>
+
+<!-- Floating Music Button -->
+<div class="music-container">
+  <button id="music-btn"><span id="music-icon">▶️ Play Music</span></button>
+</div>
+
+<audio id="revealSound" src="{% static 'music/pop.mp3' %}" preload="auto"></audio>
+
+<script>
+  window.cardData = [
+    { img: "{% static 'images/card1.jpeg' %}", msg: "“Cute Pig 🐷😆”" },
+    { img: "{% static 'images/card2.jpeg' %}", msg: "“Andhagathee Eww 😉😘”" },
+    { img: "{% static 'images/card3.jpeg' %}", msg: "“Cute Kukka Pilla 🐶🫣”" },
+    { img: "{% static 'images/card4.jpeg' %}", msg: "“Pichi Pilla 🫨🤭”" },
+    { img: "{% static 'images/card5.jpeg' %}", msg: "“The queen of my memories 👑”" }
+  ];
+</script>
+
+<script src="{% static 'js/scratch.js' %}"></script>
+
+</body>
+</html>

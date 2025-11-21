@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎂 Happy Birthday!</title>
+  <link rel="stylesheet" href="{% static 'css/cake3d.css' %}">
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bg-music" src="{% static 'music/Violin.mp3' %}" preload="auto" loop></audio>
+
+  <!-- Background stars -->
+  <canvas id="stars"></canvas>
+
+  <!-- Floating hearts -->
+  <div id="hearts-container"></div>
+
+  <!-- Cake Section -->
+  <div class="cake-container">
+    <div class="cake">
+      <div class="plate"></div>
+      <div class="layer bottom"></div>
+      <div class="layer middle"></div>
+      <div class="layer top"></div>
+      <div class="icing"></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="cake-glow"></div>
+      <img id="knife" src="{% static 'images/knife.png' %}" class="knife" alt="knife">
+    </div>
+    <br><br>
+    <h1 class="title">Happy Birthday, Akka 🎉</h1>
+    <button id="cut-btn" class="cut-btn">Cut the Cake 🎂</button>
+  </div>
+
+  <!-- Pop-up box -->
+  <div id="popup-box" class="popup-box">
+    <div class="popup-content">
+      <img src="{% static 'images/cake.jpg' %}" alt="Cake Slice" class="popup-cake">
+      <p class="popup-text">Here’s your slice, sweet sister! 💖</p>
+      <button id="fun-btn" class="fun-btn">Final Suprise 🎀❤️</button>
+    </div>
+  </div>
+
+  <div id="confetti-container"></div>
+  <script src="{% static 'js/cake3d.js' %}"></script>
+</body>
+</html>

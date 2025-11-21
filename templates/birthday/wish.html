@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌠 Make Your Wish</title>
+  <link rel="stylesheet" href="{% static 'css/wish.css' %}">
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bg-music" src="{% static 'music/poem.mp3' %}" autoplay loop></audio>
+  <!-- Sparkle Sound -->
+  <audio id="sparkle-sound" src="{% static 'music/sparkle.mp3' %}" preload="auto"></audio>
+
+  <canvas id="star-canvas"></canvas>
+
+  <div class="wish-container">
+    <h1 class="wish-title">💫 Make Your Wish 💫</h1>
+    <p class="subtitle">Close your eyes, take a deep breath... and write your wish below ✨</p>
+
+    <textarea id="wish-input" placeholder="Type your magical wish here..."></textarea>
+
+    <button id="submit-btn" class="galaxy-btn">Send to the Stars 🌟</button>
+
+  </div>
+
+  <script src="{% static 'js/wish.js' %}"></script>
+</body>
+</html>

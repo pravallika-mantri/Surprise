@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter for You 💌</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/letter.css' %}">
+</head>
+<body>
+  <p class="instruction" id="instruction">Click the 💌 seal!</p>
+
+  <div class="container">
+    <label>
+      <div class="heart" id="seal">
+        <div class="seal">💌</div>
+      </div>
+      <input id="messageState" type="checkbox" style="display:none" />
+    </label>
+
+    <div class="message" id="messageBox">
+      <h1 class="title">నా ప్రియమేయైన అక్క కి,</h1><br>
+
+      <p>
+        Nenu niku epudu chepakapovachu, kani nuvvu naa jeevitham lo chala precious part 🤗.
+        Mana silly fights nunchi endless navvulavaraku, manam kalisi gadipina prati moment naa hrudayam lo epatiki migilipothayi 😘.
+      </p>
+
+      <p>
+        Nuvvu epudu naa secret keeper, naa crime partner, inka naa forever Best friend 🥹.
+        Nee valla naa jeevitham inka bright ga, warm ga anipistundi 🫣.
+      </p>
+
+      <p>
+        Ee rojulage prathi roju prema, shanti, mariyu eppatiki thagani navvulatho nindipovali.
+        Happy Birthday Ladduuu — Eppatiki naa hrudayam lo undee santhosham nuvve 💖.
+      </p>
+
+      <div class="signature">
+        ఇట్లు ప్రేమతో,<br>
+        <span class="name">— Ni Mubula Chelli 💕</span>
+      </div>
+    </div>
+  </div>
+
+  <audio id="scroll-sound" src="{% static 'music/scroll-open.mp3' %}" preload="auto"></audio>
+  <audio id="bg-music" src="{% static 'music/violin.mp3' %}" autoplay loop></audio>
+  <button id="nextPage" class="next-btn">Next Page 🎈</button>
+
+  <script src="{% static 'js/letter.js' %}"></script>
+</body>
+</html>

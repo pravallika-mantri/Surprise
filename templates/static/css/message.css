@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffd1dc, #ffe6f2);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  color: #d63384;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.heading {
+  font-size: 2.2rem;
+  color: #ff4da6;
+  margin-bottom: 30px;
+  animation: fadeInDown 1.2s ease;
+}
+
+.message-card {
+  background: #fff0f5;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+  line-height: 1.8;
+  font-size: 1.1rem;
+  animation: fadeIn 2s ease;
+}
+
+button {
+  background: #ff80bf;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  margin: 20px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #ff4da6;
+  transform: scale(1.05);
+}
+
+/* Floating confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: fall linear forwards;
+  z-index: 1000;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.music-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+#music-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff85c1);
+  border: none;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+}
+
+#music-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ff4081, #ff79a7);
+}
+
+#nextBtn {
+  background: linear-gradient(135deg, #ff9ecb, #ff6fb7);
+}
+
+#nextBtn:hover {
+  background: linear-gradient(135deg, #ff66a3, #ff3385);
+}

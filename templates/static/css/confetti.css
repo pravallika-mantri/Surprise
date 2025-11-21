@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  color: #ff007f;
+  transition: opacity 1.2s ease;
+}
+
+body.fade-out {
+  opacity: 0;
+}
+
+.celebration-container {
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px #fff;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+#party-btn {
+  background: #ff4081;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+#party-btn:hover {
+  transform: scale(1.1);
+  background: #d63384;
+}
+
+/* 🎈 Balloon */
+.balloon {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #ff6f91);
+  opacity: 0.85;
+  animation: float 7s ease-in infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(1); opacity: 1; }
+  100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+}

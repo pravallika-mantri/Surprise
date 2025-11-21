@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Birthday Message 🎉</title>
+  <link rel="stylesheet" href="{% static 'css/message.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading">💖 My Dearest Sister 💖</h1>
+
+    <div class="message-card">
+      <p>
+       Yay! It’s your special day! 🥳<br>
+          I hope your heart is as full as your birthday cake is sweet.🍰🧁<br>
+          You deserve endless smiles today {& every day after}.😍🥹<br>
+          Every year with you feels like a beautiful story.💜<br>
+          You’re the reason my heart feels lighter and my smile shines brighter.✨<br>
+          I’m so lucky to have you — not just today, but every single day. 💞<br>
+          Sending you hugs 🤗 and all the happy vibes in the world! 🌎💜<br>
+        <h2><strong>Happy Birthday Akka! 🎉🎈</strong></h2>
+      </p>
+    </div>
+
+    <button id="confettiBtn">🎊 Celebrate!</button>
+      <button id="nextBtn">➡️ Next Surprise</button>
+    <audio id="bg-music" src="{% static 'music/poem.mp3' %}" loop></audio>
+      <div class="music-container">
+          <button id="music-btn">
+              <span id="music-icon">▶️ Play Music</span>
+          </button>
+      </div>
+
+  </div>
+
+  <script src="{% static 'js/message.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(#ffe6f2, #ffd6e0);
+  font-family: 'Poppins', cursive;
+  color: #b03a66;
+  overflow-x: hidden;
+}
+
+/* CENTER EVERYTHING */
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 60px;
+}
+
+.title {
+  font-size: 2.3rem;
+  margin-bottom: 40px;
+  color: #d63384;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 550px;
+  height: 420px;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+}
+
+.reveal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hidden-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.reveal-msg {
+  position: absolute;
+  bottom: 25px;
+  width: 80%;
+  background: rgba(255,255,255,0.9);
+  padding: 12px 20px;
+  font-size: 1.3rem;
+  border-radius: 15px;
+  text-align: center;
+  color: #a02c60;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  cursor: crosshair;
+  z-index: 2;
+}
+
+.next-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff7eb9, #ff65a3);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.next-btn.show {
+  opacity: 1;
+}
+
+.final {
+  display: none;
+}
+
+/* Music Button */
+.music-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+}
+
+#music-btn {
+  background: linear-gradient(135deg, #ff69b4, #ff85c1);
+  padding: 12px 20px;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}

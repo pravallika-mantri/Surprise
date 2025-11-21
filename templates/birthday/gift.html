@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Your Gift 🎁</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #a6c1ee, #fbc2eb);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    #birthday-message {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      margin: 40px auto;
+      color: black;
+      animation: floatText 2s ease-in-out infinite alternate;
+      text-shadow: 2px 2px 2px white;
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+
+    #gift-box {
+      width: 300px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+    }
+    #gift-box:hover { transform: scale(1.1); }
+    #gift-box:active { transform: scale(0.95); }
+
+    #video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0);
+      transition: all 0.5s ease;
+      z-index: 1000;
+    }
+
+    #video-container.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: scale(1);
+    }
+
+    #birthday-video {
+      width: auto;
+      max-width: 90%;
+      height: 80vh;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      background: #7c4dff;
+      color: #fff;
+      transition: transform 0.2s;
+    }
+
+    button:hover { transform: scale(1.05); }
+    button:active { transform: scale(0.95); }
+
+    #back-video { display: none; }
+    #back-home {
+      display: none;
+      margin-top: 25px;
+      background: #ff69b4;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      z-index: 2000;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: inherit;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { top: 0; left: -10px; }
+
+    @keyframes floatHeart {
+      0% {
+        opacity: 1;
+        transform: translateX(0px) translateY(0) rotate(45deg) scale(var(--size));
+      }
+      50% {
+        transform: translateX(calc(var(--x)/2)) translateY(-250px) rotate(45deg) scale(var(--size));
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(var(--x)) translateY(-500px) rotate(45deg) scale(var(--size));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="birthday-message">
+    I couldn’t give you a big gift now 🎁,<br>
+    but one day when we are really settled in life 🏡💼,<br>
+    I’ll give you a super huge surprise 🎉<br>
+    For now, open this little gift 💖🎀!
+  </h1>
+
+  <img id="gift-box" src="{% static 'images/gift_box.png' %}" alt="Open Gift 🎁" onclick="openGift()">
+
+  <!-- Back Home button (hidden at first, shows after closing video) -->
+  <button id="back-home" onclick="goHome()">🏠 Back to First Page</button>
+
+  <div id="video-container">
+    <video id="birthday-video" controls>
+      <source src="{% static 'images/video1.mp4' %}" type="video/mp4">
+    </video>
+
+    <div>
+      <button id="back-video" onclick="prevVideo()">⬅ Back</button>
+      <button id="next-video" onclick="nextVideo()">Next 🎬</button>
+      <button id="close-video" onclick="closeVideo()">Close ✖</button>
+    </div>
+
+    <audio id="surprise-audio" src="{% static 'music/surprise.mp3' %}"></audio>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    const videos = [
+      "{% static 'images/video1.mp4' %}",
+      "{% static 'images/video2.mp4' %}",
+      "{% static 'images/video3.mp4' %}"
+    ];
+    let currentVideo = 0;
+
+    function openGift() {
+    const container = document.getElementById('video-container');
+    const video = document.getElementById('birthday-video');
+    const backBtn = document.getElementById('back-video');
+    const nextBtn = document.getElementById('next-video');
+    const backHome = document.getElementById('back-home');
+
+    container.classList.add('active');
+    backBtn.style.display = 'none';
+    nextBtn.style.display = 'inline-block';
+    backHome.style.display = 'none';
+
+    video.src = videos[currentVideo];
+    setTimeout(() => {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+    }, 50);
+
+    createHearts(30);
+}
+
+
+    function nextVideo() {
+      const video = document.getElementById('birthday-video');
+      const backBtn = document.getElementById('back-video');
+      const nextBtn = document.getElementById('next-video');
+
+      currentVideo++;
+      video.src = videos[currentVideo];
+      video.currentTime = 0;
+      video.play().catch(() => {});
+
+      if (currentVideo > 0) backBtn.style.display = 'inline-block';
+      if (currentVideo === videos.length - 1) nextBtn.style.display = 'none';
+      createHearts(20);
+    }
+
+    function prevVideo() {
+      const video = document.getElementById('birthday-video');
+      const backBtn = document.getElementById('back-video');
+      const nextBtn = document.getElementById('next-video');
+
+      currentVideo--;
+      video.src = videos[currentVideo];
+      video.currentTime = 0;
+      video.play().catch(() => {});
+
+      if (currentVideo === 0) backBtn.style.display = 'none';
+      if (currentVideo < videos.length - 1) nextBtn.style.display = 'inline-block';
+      createHearts(20);
+    }
+
+    function closeVideo() {
+      const container = document.getElementById('video-container');
+      const video = document.getElementById('birthday-video');
+      const backHome = document.getElementById('back-home');
+
+      video.pause();
+      container.classList.remove('active');
+
+      // Show home button under gift box after video closed
+      setTimeout(() => {
+        backHome.style.display = 'inline-block';
+      }, 400);
+    }
+
+    function goHome() {
+      window.location.href = "/";
+    }
+
+    function createHearts(num) {
+      const colors = ['#ff4d94', '#ff80b5', '#d580ff', '#b39ddb', '#c084fc'];
+      for (let i = 0; i < num; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        const size = (Math.random() * 1 + 0.5).toFixed(2);
+        heart.style.setProperty('--size', size);
+        const randomX = Math.floor(Math.random() * 300 - 150) + "px";
+        heart.style.setProperty('--x', randomX);
+        heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        const duration = (Math.random() * 2 + 2).toFixed(2) + 's';
+        heart.style.animation = `floatHeart ${duration} linear forwards`;
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.bottom = '-20px';
+        document.body.appendChild(heart);
+        heart.addEventListener('animationend', () => heart.remove());
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+      const audio = document.getElementById('surprise-audio');
+      audio.play().catch(() => {
+        document.body.addEventListener('click', () => audio.play(), { once: true });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise 🎂</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/global.js' %}"></script>
+  <style>
+body {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Cake animation */
+.cake {
+  position: relative;
+  width: 200px;
+  display: inline-block;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  animation: cakeBounce 2s infinite alternate;
+}
+
+@keyframes cakeBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Candle & flame */
+.candle {
+  width: 15px;
+  height: 60px;
+  background: #fff;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.flame {
+  width: 20px;
+  height: 30px;
+  background: radial-gradient(circle, #ffec61 0%, #ff8800 70%);
+  border-radius: 50%;
+  position: absolute;
+  top: -25px;
+  left: -2px;
+  animation: flicker 0.3s infinite alternate;
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.8);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+@keyframes flicker {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.2) rotate(-2deg); opacity: 0.8; }
+}
+
+/* Button animation */
+button {
+  margin-top: 40px;
+  background-color: #ff80b5;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Floating hearts/confetti */
+.heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: pink;
+  transform: rotate(45deg);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+.heart::before { top: -7px; left: 0; }
+.heart::after { top: 0; left: -7px; }
+
+   h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.2;
+  margin: 30px 20px;
+
+  /* White text with 3D effect using layered shadows */
+  color: #ffffff;
+  text-shadow:
+    1px 1px 0px black,   /* light shadow top-left */
+    3px 3px 4px black,   /* slightly darker shadow */
+    3px 3px 5px rgba(0,0,0,0.4); /* soft main shadow */
+
+  /* Subtle floating animation */
+  animation: floatText 3s ease-in-out infinite alternate;
+}
+
+/* Keep <b> emojis same color as text */
+h1 b {
+  color: inherit;
+}
+
+/* Floating animation */
+@keyframes floatText {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+</style>
+
+</head>
+<body>
+<h1><b>🥳</b> Chitti Papayii <b>👏🏻</b></h1><br><br>
+  <div class="cake">
+    <img src="{% static 'images/cake.png' %}" alt="Cake" style="width: 200px; border-radius: 10px; ">
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+
+  <button onclick="blowCandle()">Blow Candle 🎂</button>
+  <!-- Blowing sound effect -->
+  <audio id="blowSound" src="{% static 'music/blow.mp3' %}"></audio>
+  <!-- Audio element -->
+  <audio id="birthdaySong" loop>
+    <source src="{% static 'music/bday.mp3' %}" type="audio/mpeg">
+  </audio>
+  <script>
+function blowCandle() {
+  const flame = document.getElementById('flame');
+  const blowSound = document.getElementById('blowSound');
+
+  // Play blowing sound
+  blowSound.play();
+
+  // Animate flame shrinking and disappearing completely
+  flame.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+  flame.style.transform = 'scale(0) translateY(-20px)';
+  flame.style.opacity = '0';
+
+  // Remove flame from DOM after animation
+  setTimeout(() => {
+    flame.remove();
+  }, 600);
+
+  // Create blowing puff effect
+  createBlowEffect();
+
+  // Floating hearts for celebration
+  for (let i = 0; i < 20; i++) {
+    createHeart();
+  }
+
+  // Redirect after sound and animation
+  setTimeout(() => {
+    window.location.href = "{% url 'home' %}";
+  }, 2000);
+}
+
+function createBlowEffect() {
+  const blow = document.createElement('div');
+  blow.style.position = 'absolute';
+  blow.style.top = '42%';
+  blow.style.left = '50%';
+  blow.style.transform = 'translate(-50%, -50%)';
+  blow.style.width = '40px';
+  blow.style.height = '40px';
+  blow.style.borderRadius = '50%';
+  blow.style.background = 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)';
+  blow.style.opacity = '1';
+  blow.style.zIndex = '999';
+  document.body.appendChild(blow);
+
+  // Animate the puff expanding and fading
+  blow.animate([
+    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+    { transform: 'translate(-50%, -80%) scale(6)', opacity: 0 }
+  ], {
+    duration: 900,
+    easing: 'ease-out'
+  });
+
+  setTimeout(() => blow.remove(), 1000);
+}
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.bottom = '-20px';
+  heart.style.backgroundColor = ['#ff4d94','#ff80b5','#d580ff','#b39ddb','#c084fc'][Math.floor(Math.random()*5)];
+  heart.style.width = heart.style.height = (10 + Math.random()*10)+'px';
+  document.body.appendChild(heart);
+
+  const speed = 2 + Math.random() * 2;
+  let pos = -20;
+  const floatHeart = setInterval(() => {
+    if (pos > window.innerHeight + 20) {
+      heart.remove();
+      clearInterval(floatHeart);
+    }
+    pos += speed;
+    heart.style.bottom = pos + 'px';
+    heart.style.left = parseInt(heart.style.left) + Math.sin(pos / 20) * 5 + 'px';
+  }, 20);
+}
+
+    // Play the song when page loads
+    window.addEventListener('load', () => {
+      const audio = document.getElementById('birthdaySong');
+      audio.play().catch(err => {
+        console.log("Autoplay blocked, user interaction needed.");
+      });
+    });
+
+    // Stop the song when the button is clicked
+    document.getElementById('blowCandleBtn').addEventListener('click', () => {
+      const audio = document.getElementById('birthdaySong');
+      audio.pause();
+      audio.currentTime = 0; // reset song to start
+      alert("Candle blown! 🎉");
+    });
+    const cube = document.querySelector('.cube');
+cube.addEventListener('mouseenter', () => cube.style.animationPlayState = 'paused');
+cube.addEventListener('mouseleave', () => cube.style.animationPlayState = 'running');
+</script>
+
+
+</body>
+</html>

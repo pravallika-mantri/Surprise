@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/love.css' %}" />
+    <title>Do You Love Me?</title>
+  </head>
+  <body>
+    <div class="question-container container">
+      <img src="{% static 'images/cute.gif' %}" alt="Cute gif" class="tenor-gif-embed" />
+      <h2 class="question">Do you love me? 💕</h2>
+      <p>{I DARE YOU TO CLICK NO}</p><br>
+
+      <div class="button-container">
+        <button class="yes-btn btn js-yes-btn">Yes</button>
+        <button class="no-btn btn js-no-btn">No</button>
+      </div>
+    </div>
+  <audio autoplay loop id="bg-music">
+    <source src="{% static 'music/funny.mp3' %}" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+    <!-- Result -->
+    <div class="result-container container">
+      <video
+        class="gif-result"
+        src="{% static 'images/cute love gif.mp4' %}"
+        autoplay
+        loop
+        muted
+        playsinline></video>
+      <h2>I knew it 😍!</h2>
+      <button onclick="window.location.href='/wish/'" class="next-btn">
+        Now Make a Wish 😉💌
+      </button>
+    </div>
+
+    <script src="{% static 'js/love.js' %}"></script>
+  </body>
+</html>

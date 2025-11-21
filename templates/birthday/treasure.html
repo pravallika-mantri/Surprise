@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎁 Birthday Treasure Hunt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/treasure.css' %}">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="treasure-container">
+    <h1 class="title">🏴‍☠️ Birthday Treasure Hunt 🗺️</h1>
+    <p class="hint">There are <span id="totalCount">5</span> hidden treasures! Can you find them all? 👀</p>
+    <p id="progress" class="progress">5 left...</p>
+
+    <div class="hunt-area" id="huntArea">
+      <img src="{% static 'images/treasure.jpeg' %}" alt="Treasure Map" class="bg-image">
+
+      <!-- Hidden treasures (repositioned star to visible area) -->
+      <div class="treasure" data-id="1" style="top: 27%; left: 15%;">🎈</div>
+      <div class="treasure" data-id="2" style="top: 72%; left: 55%;">🍃</div>
+      <div class="treasure" data-id="3" style="top: 46%; left: 78%;">🧁</div>
+      <div class="treasure" data-id="4" style="top: 61%; left: 32%;">🫥</div>
+      <div class="treasure" data-id="5" style="top: 23%; left: 83%;">⭐️</div> <!-- moved slightly to visible zone -->
+    </div>
+
+    <div id="foundMessage" class="found-message">
+      <h2>🎉 You found all the hidden treasures! 🎉</h2>
+      <p>You’ve unlocked the secrets of the map — your adventure spirit shines! 💕</p>
+      <button id="nextPage" class="next-btn">Open Present 💝</button>
+    </div>
+  </div>
+
+  <audio id="found-sound" src="{% static 'music/found.mp3' %}" preload="auto"></audio>
+  <audio id="bg-music" src="{% static 'music/treasure.mp3' %}" autoplay loop></audio>
+
+  <script src="{% static 'js/treasure.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💞 Spin the Wheel of Love 💞</title>
+  <link rel="stylesheet" href="{% static 'css/spin.css' %}">
+</head>
+<body>
+  <!-- Sounds -->
+  <audio id="spin-sound" src="{% static 'music/spin.wav' %}" preload="auto"></audio>
+  <audio id="win-sound" src="{% static 'music/win.mp3' %}" preload="auto"></audio>
+<br>
+  <div class="galaxy-bg"></div>
+  <div class="wheel-container">
+    <h1 class="title">💫 Spin the Wheel of Love 💫</h1>
+
+    <div class="wheel-wrapper">
+      <div class="pointer">💖</div> <!-- Pointer icon -->
+      <canvas id="wheelCanvas" width="400" height="400"></canvas>
+    </div>
+<br><br>
+    <button id="spin-btn" class="galaxy-btn">💞 Spin 💞</button>
+
+    <div id="result" class="result"></div>
+
+    <button id="next-btn" class="next-btn" style="display:none;">Next Surprise 🤭</button>
+  </div>
+  <!-- Background Music -->
+<audio id="bg-music" src="{% static 'music/cute.mp3' %}" loop></audio>
+
+<!-- Music Button -->
+<div class="music-container">
+  <button id="music-btn">
+    <span id="music-icon">▶️ Play Music</span>
+  </button>
+</div>
+
+
+  <script src="{% static 'js/spin.js' %}"></script>
+</body>
+</html>

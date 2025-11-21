@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday Akka! 🎉</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/global.js' %}"></script>
+    <style>
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;           /* Large and bold */
+            color: #ff4081;             /* Bright pink */
+            text-shadow: 2px 2px #fcd34d, 4px 4px #ff9a9e;         /* soft pink shadow for 3D effect */
+            margin-bottom: 40px;
+            animation: bounce 1s infinite alternate;
+        }
+
+         /* Simple bounce animation */
+        @keyframes bounce {
+        from { transform: translateY(0); }
+        to { transform: translateY(-10px); }
+        }
+        hr {
+  width: 80%;
+  margin: 20px auto;
+  border: none;
+  height: 5px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.2), transparent);
+}
+
+        .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.btn {
+  background: linear-gradient(135deg, #7c4dff, #b39ddb);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #9575cd, #b388ff);
+  box-shadow: 0 8px 20px rgba(124, 77, 255, 0.4);
+}
+
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#secret-btn {
+  background: linear-gradient(135deg, #ff4081, #ff80ab);
+}
+
+#secret-btn:hover {
+  background: linear-gradient(135deg, #ff5f98, #ff8cb3);
+  box-shadow: 0 8px 20px rgba(255, 64, 129, 0.4);
+}
+
+    </style>
+</head>
+<body>
+<h1>Happy Birthday Akka! 🎉</h1>
+                     <!-- Slideshow -->
+<div class="slideshow-container">
+  {% for slide in slides %}
+    <div class="slide fade">
+      <img src="{% static slide.image %}" alt="Slide {{ forloop.counter }}">
+      <div class="caption">{{ slide.caption }}</div>
+    </div>
+  {% endfor %}
+</div><br><hr>
+                     <!--x Background music -->
+<audio id="birthday-music"  autoplay loop>
+  <source src="{% static 'music/Baby.mp3' %}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<button id="music-control">Play Music 🎶</button>
+        <!-- Confetti trigger -->
+<button id="confetti-btn">Blast Here 💕</button><br>
+<!-- <button id="gift-btn" onclick="window.location.href='{% url 'gift' %}'">Open Gift 🎁</button> -->
+    <button id="secret-btn" class="btn">Open Secret 🔐</button><br><br>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

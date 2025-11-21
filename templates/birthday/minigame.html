@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find the Hidden Cake 🎂</title>
+  <link rel="stylesheet" href="{% static 'css/minigame.css' %}">
+  <script src="{% static 'js/global.js' %}"></script>
+
+</head>
+<body>
+ <!-- 🎵 Background Music -->
+  <audio id="bg-music" src="{% static 'music/bg-music.mp3' %}" autoplay loop></audio>
+  <h1>🎂 Find the Hidden Cake! 🎉</h1>
+  <p>Click the boxes to find where the cake is hiding 🍰</p>
+
+  <div id="game-board"></div>
+  <p id="result-message"></p>
+  <button id="play-again">Play Again 🔁</button>
+  <button id="msg" style="margin-left: 10px;">Move On ➡️</button>
+  <!-- 🔊 Global Click Sound -->
+<audio id="click-sound" src="{% static 'audio/click.mp3' %}" preload="auto"></audio>
+  <script> const staticImgPath = "{% static 'img/' %}"; </script>
+
+  <script src="{% static 'js/minigame.js' %}"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bgMusic = document.getElementById("bg-music");
+  bgMusic.volume = 0;
+  setTimeout(() => { bgMusic.volume = 0.4; }, 500); // Gentle background volume
+
+    // Try autoplay — some browsers may block it
+    bgMusic.play().catch(() => {});
+
+    // Resume when user interacts (mobile-safe)
+    const startMusic = () => {
+      bgMusic.play().catch(() => {});
+      document.removeEventListener("click", startMusic);
+    };
+    document.addEventListener("click", startMusic);
+  });
+</script>
+
+</body>
+</html>

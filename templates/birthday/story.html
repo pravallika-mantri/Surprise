@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story 💕</title>
+  <link rel="stylesheet" href="{% static 'css/story.css' %}" />
+</head>
+<body>
+
+ <!-- Background Music -->
+  <audio id="bg-music" src="{% static 'music/sis2.mp3' %}" autoplay loop></audio>
+
+  <div class="scrapbook">
+    <h1 class="title">📖 Our Story</h1>
+
+    <div class="page">
+      <div class="photo-frame tilt-left">
+        <img src="{% static 'images/story1.jpg' %}" alt="Memory 1" />
+        <p class="caption">When it all began 💫</p>
+      </div>
+      <div class="note">
+        <p>It all started with laughter, long talks, and endless memories. Who knew it would turn into something this special? 💖</p>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="note">
+        <p>Through every high and low, your smile has been my favorite part of every story. 🌸</p>
+      </div>
+      <div class="photo-frame tilt-right">
+        <img src="{% static 'images/story2.jpeg' %}" alt="Memory 2" />
+        <p class="caption">My favorite Moments 💜</p>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="photo-frame tilt-left">
+        <img src="{% static 'images/story3.jpeg' %}" alt="Memory 3" />
+        <p class="caption">A moment frozen in time 🕊️</p>
+      </div>
+      <div class="note">
+        <p>Every picture tells a story — and every story brings me back to you. 💌</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button id="prev-page" class="nav-btn">⬅️ Previous</button>
+      <button id="next-page" class="nav-btn">Next ➡️</button>
+    </div>
+
+    <div id="end-buttons" class="footer" style="display: none;">
+      <button id="prev-end" class="nav-btn">⬅️ Previous</button>
+      <button id="to-puzzle" class="nav-btn next-btn">🎯 What Next...?</button>
+    </div>
+  </div>
+
+  <audio id="flip-sound" src="{% static 'music/pageflip.mp3' %}"></audio>
+  <script src="{% static 'js/story.js' %}"></script>
+  <!-- Optional: script to handle autoplay restrictions -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bgMusic = document.getElementById('bg-music');
+    bgMusic.volume = 0; // start soft
+
+    // Try autoplay immediately
+    bgMusic.play().then(() => {
+      // If autoplay works, fade in smoothly
+      setTimeout(() => { bgMusic.volume = 0.4; }, 1000);
+    }).catch(() => {
+      // If blocked, wait for first click/touch to play
+      const startMusic = () => {
+        bgMusic.play().catch(() => {});
+        setTimeout(() => { bgMusic.volume = 0.4; }, 1000);
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+      };
+      document.addEventListener('click', startMusic);
+      document.addEventListener('touchstart', startMusic);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at bottom, #12001a 0%, #240045 100%);
+  font-family: 'Handlee', cursive;
+  color: #fff;
+  text-align: center;
+}
+
+/* ⭐ Background stars */
+#stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Floating hearts */
+#hearts-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Cake container */
+.cake-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+/* Title */
+.title {
+  font-size: 2.6em;
+  color: #ffd6ff;
+  text-shadow: 0 0 25px #ff85c0, 0 0 50px #ff66b2;
+  margin-top: 30px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards 4s;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Cake */
+.cake {
+  position: relative;
+  margin: auto;
+  width: 220px;
+  height: 200px;
+}
+.cake-glow {
+  position: absolute;
+  width: 260px;
+  height: 200px;
+  left: -20px;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,183,224,0.3) 0%, transparent 70%);
+  animation: pulse 3s ease-in-out infinite alternate;
+  z-index: -1;
+}
+@keyframes pulse {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* Plate */
+.plate {
+  position: absolute;
+  width: 260px;
+  height: 25px;
+  background: radial-gradient(circle, #ddd, #999);
+  border-radius: 50%;
+  bottom: -10px;
+  left: -20px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 1s;
+}
+
+/* Cake layers */
+.layer {
+  position: absolute;
+  width: 220px;
+  height: 55px;
+  left: 0;
+  border-radius: 12px;
+  opacity: 0;
+  transform: scaleY(0.6);
+  transform-origin: bottom;
+  box-shadow: inset 0 3px 8px rgba(255,255,255,0.4);
+}
+@keyframes buildLayer {
+  from { opacity: 0; transform: scaleY(0); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+.layer.bottom {
+  bottom: 0;
+  background: linear-gradient(180deg, #ff80ab, #ff4081);
+  animation: buildLayer 1s ease forwards 1s;
+}
+.layer.middle {
+  bottom: 55px;
+  background: linear-gradient(180deg, #ffb6c1, #ff80c0);
+  animation: buildLayer 1s ease forwards 2s;
+}
+.layer.top {
+  bottom: 110px;
+  background: linear-gradient(180deg, #ffe6f2, #ffb3d9);
+  animation: buildLayer 1s ease forwards 3s;
+}
+
+/* Icing */
+.icing {
+  position: absolute;
+  width: 240px;
+  height: 22px;
+  left: -10px;
+  bottom: 165px;
+  border-radius: 18px;
+  background: #fff0f5;
+  box-shadow: 0 0 25px #fff, 0 0 40px pink;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 3.5s;
+}
+
+/* Candle */
+.candle {
+  position: absolute;
+  width: 10px;
+  height: 40px;
+  background: repeating-linear-gradient(90deg, #fff, #fff 5px, #ff66b2 5px, #ff66b2 10px);
+  top: -26px;
+  left: 105px;
+  border-radius: 3px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 4s;
+}
+.flame {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  width: 10px;
+  height: 15px;
+  background: radial-gradient(circle, #fff59d 0%, #ffb347 60%, transparent 100%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: flicker 0.3s infinite alternate;
+}
+@keyframes flicker {
+  from { transform: translateX(-50%) scale(1); opacity: 1; }
+  to { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+}
+
+/* Cut Button */
+.cut-btn {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff5277);
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  padding: 12px 34px;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 153, 220, 0.6);
+  opacity: 0;
+  animation: fadeIn 2s ease forwards 5s;
+  transition: all 0.4s ease;
+}
+.cut-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255, 153, 220, 0.9);
+}
+
+/* Knife */
+/* 🔪 Knife — slightly higher and smoother motion */
+.knife {
+  position: absolute;
+  top: 40%; /* raised higher */
+  left: -200px;
+  width: 150px;
+  transition: all 1.8s ease-in-out;
+  transform: rotate(10deg);
+  z-index: 15;
+  opacity: 0;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+}
+
+.knife.active {
+  left: 35%;
+  top: 30%;
+  opacity: 1;
+  transform: rotate(5deg);
+}
+
+/* 🎈 "Do you want fun again?" Button */
+.fun-btn {
+  margin-top: 25px;
+  background: linear-gradient(135deg, #ff80c0, #ff4fb8, #b30089);
+  border: none;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 14px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-family: 'Handlee', cursive;
+  box-shadow: 0 0 25px rgba(255, 153, 220, 0.7),
+              0 0 50px rgba(255, 105, 180, 0.6);
+  text-shadow: 0 0 8px #fff, 0 0 20px #ffb6f9;
+  transition: all 0.4s ease;
+  animation: fadeIn 1.2s ease forwards 1s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing hover effect */
+.fun-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-20deg);
+  transition: 0.75s;
+}
+
+.fun-btn:hover::after {
+  left: 125%;
+}
+
+.fun-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(255, 153, 220, 0.9),
+              0 0 60px rgba(255, 105, 180, 0.7);
+}
+
+/* Subtle pulse animation */
+@keyframes fadeIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.9;
+  animation: fall 3s linear forwards;
+  z-index: 50;
+}
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Pop-up Box */
+.popup-box {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.popup-content {
+  background: radial-gradient(circle, #2b003d 0%, #180020 100%);
+  border: 2px solid #ffb3d9;
+  border-radius: 20px;
+  box-shadow: 0 0 40px #ff99cc, 0 0 80px #ff66b2;
+  padding: 30px;
+  width: 320px;
+  text-align: center;
+  animation: scaleIn 0.7s ease forwards;
+}
+@keyframes scaleIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.popup-cake {
+  width: 250px;

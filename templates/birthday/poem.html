@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>నా అక్కకు 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Noto+Serif+Telugu:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/poem.css' %}">
+</head>
+<body>
+  <div class="poem-container">
+    <div class="paper">
+      <h1 class="title">💫 నా అక్కకు 💫</h1>
+
+      <div class="poem-text" id="poemText">
+        <!-- Telugu poem will type dynamically -->
+      </div>
+
+      <div class="signature">
+        — ప్రేమతో, నీ చెల్లి 💕
+      </div>
+
+      <button id="nextPage" class="next-btn">One Question 🧐</button>
+    </div>
+  </div>
+
+  <audio id="bg-music" src="{% static 'music/Akka.mp3' %}" autoplay loop></audio>
+  <audio id="type-sound" src="{% static 'music/type.mp3' %}" preload="auto"></audio>
+
+  <script src="{% static 'js/poem.js' %}"></script>
+</body>
+</html>

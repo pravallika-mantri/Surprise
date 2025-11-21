@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(#f3e9d2, #d7b98c);
+  font-family: 'Noto Serif Telugu', serif;
+  color: #3b2f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Centered container */
+.poem-container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Parchment box */
+.paper {
+  background: url("{% static 'images/parchment-texture.jpg' %}") center/cover no-repeat;
+  border: 2px solid #c7a266;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 20px 40px 30px;   /* 👈 Reduced top padding */
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* --- remove hidden line-height gap between title and poem --- */
+.paper {
+  line-height: 1; /* reset base line height */
+}
+
+.paper .title {
+  display: block;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.paper .poem-text {
+  display: block;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-10px);  /* 👈 visually pulls poem upward */
+}
+
+
+/* Title */
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  line-height: 1;        /* removes hidden space inside Telugu font */
+  color: #4b2b0f;
+  text-shadow: 0 0 6px rgba(255, 245, 200, 0.6);
+}
+
+/* Poem text starts *immediately* below title */
+.poem-text {
+  margin-top: -8px;      /* 👈 pulls poem upward to close the hidden gap */
+  padding-top: 0;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+
+/* Signature */
+.signature {
+  text-align: right;
+  margin-top: 25px;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #593815;
+}
+
+/* Button — soft pink-golden tone */
+.next-btn {
+  margin-top: 20px;
+  padding: 10px 26px;
+  background: linear-gradient(135deg, #e8b7a2, #f3d6c2); /* 👈 changed to warm pink-golden */
+  border: none;
+  color: #4b2b0f; /* dark text for contrast */
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #f3d6c2, #e8b7a2);
+  box-shadow: 0 0 12px rgba(255, 230, 200, 0.8);
+}
+
+.show-btn {
+  opacity: 1;
+  transition: opacity 1.2s ease;
+}

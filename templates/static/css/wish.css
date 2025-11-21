@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Poppins:wght@400;600&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: radial-gradient(circle at bottom, #06021a 0%, #000010 100%);
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+/* Canvas stars */
+#star-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Main container */
+.wish-container {
+  position: relative;
+  z-index: 2;
+  top: 45%;
+  transform: translateY(-45%);
+  padding: 0 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Title */
+.wish-title {
+  font-size: 2.5em;
+  color: #f5d0fe;
+  text-shadow: 0 0 25px #c084fc, 0 0 50px #a855f7;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 15px #8b5cf6; }
+  to { text-shadow: 0 0 40px #ec4899; }
+}
+
+.subtitle {
+  font-size: 1.3em;
+  margin: 15px 0 25px;
+  color: #cfcfff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Wish input area */
+#wish-input {
+  width: 80%;
+  max-width: 600px;
+  height: 120px;
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.1em;
+  font-family: 'Handlee', cursive;
+  resize: none;
+  outline: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(157, 78, 221, 0.4);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+#wish-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#wish-input:focus {
+  box-shadow: 0 0 40px rgba(199, 125, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Galaxy Button */
+.galaxy-btn {
+  margin-top: 30px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc, #b721ff);
+  border: none;
+  color: white;
+  font-size: 1.1em;
+  padding: 14px 36px;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(157, 78, 221, 0.6);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.galaxy-btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-20deg);
+  transition: 0.75s;
+}
+
+.galaxy-btn:hover::after {
+  left: 125%;
+}
+
+.galaxy-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 40px rgba(199, 125, 255, 0.9);
+}
+
+/* Fade effect */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.shooting-star {
+  position: fixed;
+  font-size: 2.5em;
+  color: #fff8e7;
+  text-shadow: 0 0 15px #fff, 0 0 30px #ffd580, 0 0 60px #ffae00;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.wish-text {
+  position: fixed;
+  color: #ffe0ff;
+  font-family: 'Handlee', cursive;
+  font-size: 1.3em;
+  text-shadow: 0 0 10px #ffb6f9, 0 0 25px #d48bff;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Cake Button — starts hidden, fades in center bottom */
+.cake-btn {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff5277);
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  padding: 14px 38px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 153, 220, 0.6);
+  opacity: 0;
+  transition: all 0.8s ease;
+  z-index: 20;
+}
+
+.cake-btn.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  animation: glow-btn 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-btn {
+  from { box-shadow: 0 0 15px #ffb6f9, 0 0 25px #ff85c0; }
+  to { box-shadow: 0 0 30px #ff99cc, 0 0 60px #ff66b2; }
+}
+.shooting-star {
+  position: fixed;
+  font-size: 2.5em;
+  color: #fff8e7;
+  text-shadow: 0 0 15px #fff, 0 0 30px #ffd580, 0 0 60px #ffae00;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.wish-text {
+  position: fixed;
+  color: #ffe0ff;
+  font-family: 'Handlee', cursive;
+  font-size: 1.3em;
+  text-shadow: 0 0 10px #ffb6f9, 0 0 25px #d48bff;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* ✨ Sparkle burst animation (for Send Wish button) */
+.sparkle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Individual sparkle particles */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff9c4 0%, #ffd700 30%, transparent 80%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff59d, 0 0 20px #ffecb3, 0 0 30px #ffd54f;
+  opacity: 0;
+  animation: sparklePop 1.2s ease-out forwards;
+}
+
+/* Particle movement */
+@keyframes sparklePop {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.5) translate(var(--x), var(--y));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3) translate(var(--x), var(--y));
+  }
+}
